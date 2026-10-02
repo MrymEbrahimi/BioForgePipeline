@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def test():
-    print("Erfan")
-=======
 def filter_orfs(orfs, min_length):
     """Filter ORFs based on the project filtering criteria.
 
@@ -15,4 +11,3 @@ def filter_orfs(orfs, min_length):
     Returns:
         A collection of ORFs that satisfy the filtering criteria.
     """
->>>>>>> main
