@@ -4,7 +4,6 @@ def test():
     print("Mohammad")
     
 def find_orfs_reverse(dna: str):
-    dna = convertDnaToReversComplemetRna(dna)
     start_pos = findStartPos(dna)
 
 def findStartPos(dna: str):
@@ -14,7 +13,7 @@ def findStartPos(dna: str):
 
 
 
-def convertDnaToReversComplemetRna(dna: str):
+"""def convertDnaToReversComplemetRna(dna: str):
     dna = dna.upper()
     reverse = dna[::-1]
     dnaTranslator = str.maketrans("ATCG","TAGC")
@@ -22,6 +21,7 @@ def convertDnaToReversComplemetRna(dna: str):
     rnaTranslator = str.maketrans("T","U")
     convertToRNA = reversComplement.translate(rnaTranslator)
     return convertToRNA
+    """
     """Find Open Reading Frames on the reverse DNA strand.
 
     The function creates the reverse complement of the DNA sequence,
