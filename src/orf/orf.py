@@ -2,7 +2,7 @@ START_CODON = "ATG"
 STOP_CODONS = {"TAA", "TAG", "TGA"}
 
 class ORF:
-    def __init__(self,strand,frame: int,start_pos:int,protein:str,is_complete: bool) -> None:
+    def __init__(self,strand: str,frame: int,start_pos:int,protein:str,is_complete: bool) -> None:
         self.strand = strand
         self.frame = frame
         self.start_pos = start_pos
