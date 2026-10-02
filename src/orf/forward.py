@@ -1,12 +1,25 @@
 def find_orfs_forward(dna):
-    """Find Open Reading Frames on the forward DNA strand.
+   rna = sequence.replace("T", "U")
+   orfs=[]
 
-    The function checks all three reading frames, identifies start
-    and stop codons, and detects both complete and incomplete ORFs.
+   for frame in range(3):
+    start_pos = None
+    protein = []
 
-    Args:
-        dna: DNA sequence to analyze.
+   for start_pos is None and codon == "AUG":
+    start_pos = i
+    Protein = ["M"]
+   elif start_pos is nit None:
+    if codon in STOP:
 
-    Returns:
-        A collection of ORFs found on the forward strand.
-    """
+
+for i in range(0, len(sequence) - 2, 3):
+    codon = sequence[i:i+3]
+for i in range(1, len(sequence) - 2, 3):
+    codon = sequence[i:i+3]
+for i in range(2, len(sequence) - 2, 3):
+    codon = sequence[i:i+3]
+
+
+for frame in range(3):
+    for i in range(frame, len(sequence) - 2, 3):
