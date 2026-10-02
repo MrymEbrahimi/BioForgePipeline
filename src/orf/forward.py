@@ -1,25 +1,30 @@
+from .orf import ORF, Stop_Codon, Stop_Codons
+
+
 def find_orfs_forward(dna):
-   rna = sequence.replace("T", "U")
-   orfs=[]
+    orfs = []
 
-   for frame in range(3):
-    start_pos = None
-    protein = []
+    for frame in range(3):
+        start_pos = None
+        protein = []
 
-   for start_pos is None and codon == "AUG":
-    start_pos = i
-    Protein = ["M"]
-   elif start_pos is nit None:
-    if codon in STOP:
+        for i in range(frame, len(dna) - 2, 3):
+            codon = dna[i:i + 3]
 
+            if start_pos is None and codon == START_CODON:
+                start_pos = i
+                protein = ["M"]
 
-for i in range(0, len(sequence) - 2, 3):
-    codon = sequence[i:i+3]
-for i in range(1, len(sequence) - 2, 3):
-    codon = sequence[i:i+3]
-for i in range(2, len(sequence) - 2, 3):
-    codon = sequence[i:i+3]
+            elif start_pos is not None:
+                if codon in STOP_CODONS:
+                    is_complete = True
 
+                    orf = ORF(
+                        strand="Forward",
+                        frame=frame,
+                        start_pos=start_pos,
+                        protein="".join(protein),
+                        is_complete=is_complete
+                    )
 
-for frame in range(3):
-    for i in range(frame, len(sequence) - 2, 3):
+                    orfs.append(orf)
