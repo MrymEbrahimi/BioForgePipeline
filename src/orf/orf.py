@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def test():
-    print("Maryam & Mohammad")
-=======
 class ORF:
     def __init__(self,strand,frame: int,start_pos:int,protein:str,is_complete: bool) -> None:
         self.strand = strand
@@ -18,4 +14,4 @@ class ORF:
         protein: Protein sequence translated from the ORF.
         is_complete: Indicates whether the ORF has a valid stop codon.
     """
->>>>>>> main
+چ
