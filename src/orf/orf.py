@@ -3,6 +3,12 @@ def test():
     print("Maryam & Mohammad")
 =======
 class ORF:
+    def __init__(self,strand,frame,start_pos,protein,is_complete) -> None:
+        self.strand = strand
+        self.frame = frame
+        self.start_pos = start_pos
+        self.protein = protein
+        self.is_complete = is_complete
     """Represent an Open Reading Frame (ORF).
 
     Attributes:
