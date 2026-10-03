@@ -1,12 +1,7 @@
 def annotate(orfs):
-    """Assign unique identifiers to ORFs.
+    counter = 1
+    for orf in orfs:
+        orf.id = f"BFG_{counter:03d}"
+        counter += 1
 
-    ORFs are automatically assigned identifiers in the format
-    BFG_001, BFG_002, and so on.
-
-    Args:
-        orfs: Collection of ORFs to annotate.
-
-    Returns:
-        The annotated ORFs.
-    """
+    return orfs

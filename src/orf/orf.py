@@ -8,5 +8,5 @@ class ORF:
         self.start_pos = start_pos
         self.protein = protein
         self.is_complete = is_complete
- 
+        self.id = None
 
