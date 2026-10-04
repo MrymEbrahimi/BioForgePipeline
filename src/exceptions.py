@@ -8,5 +8,7 @@ class FastaFormatError(BioForgeError):
 
 class InvalidSequenceError(BioForgeError):
     pass
+
+
 class DataFileError(BioForgeError):
     pass

@@ -1,18 +1,37 @@
+
 class DNASequence:
-    """Represent a DNA sequence and provide common DNA operations.
-
-    Attributes:
-        sequence: DNA sequence to be processed.
-    """
-
+    def __init__(self, sequence):
+        self.sequence = sequence
     def complement(self):
-        """Return the complementary DNA sequence."""
-
+        result = ''
+        for base in self.sequence:
+            if base == 'A':
+                result += "T"
+            elif base == "T":
+                result += "A"
+            elif base == "C":
+                result += "G"
+            elif base == "G":
+                result += "C"
+        return result
     def reverse_complement(self):
-        """Return the reverse complement of the DNA sequence."""
+        complement = self.complement()
+        result = ""
 
+        for base in reversed(complement):
+            result += base
+
+        return result
     def to_rna(self):
-        """Convert the DNA sequence to its RNA form."""
+        result=''
+        for base in self.sequence:
+            if base=='T':
+                result +="U"
+            else:
+                result +=base
+        return result
 
     def gc_content(self):
-        """Calculate and return the GC content of the DNA sequence."""
+        gc = self.sequence.count('C') + self.sequence.count('G')
+        result = (gc/ len(self.sequence)) * 100
+        return result
