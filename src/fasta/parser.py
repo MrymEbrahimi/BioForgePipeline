@@ -1,8 +1,8 @@
 import logging
 import re
 
-from exceptions import FastaFormatError
-from record import FASTARecord
+from src.exceptions import FastaFormatError
+from .record import FASTARecord
 # Match FASTA headers and separate the ID from the description.
 HEADER_RE = re.compile(r"^>\s*(?P<id>\S+)\s*(?P<desc>.*)$")
 
