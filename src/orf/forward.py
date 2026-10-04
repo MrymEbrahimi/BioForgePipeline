@@ -29,7 +29,7 @@ def find_orfs_forward(dna):
                     strand="Forward",
                     frame=frame,
                     start_pos=start_pos,
-                    protein=None,
+                    protein="",
                     is_complete=is_complete
                 )
 
