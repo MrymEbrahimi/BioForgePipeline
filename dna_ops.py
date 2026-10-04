@@ -9,14 +9,11 @@ class DNASequence:
                 result += "T"
             elif base == "T":
                 result += "A"
-
             elif base == "C":
                 result += "G"
-
             elif base == "G":
                 result += "C"
         return result
-
     def reverse_complement(self):
         complement = self.complement()
         result = ""
