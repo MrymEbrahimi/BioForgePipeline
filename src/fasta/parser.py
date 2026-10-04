@@ -1,14 +1,14 @@
 import logging
 import re
 
-from exceptions import FastaFormatError
-from record import FASTARecord
+from src.exceptions import FastaFormatError
+from .record import FASTARecord
 # Match FASTA headers and separate the ID from the description.
 HEADER_RE = re.compile(r"^>\s*(?P<id>\S+)\s*(?P<desc>.*)$")
 
 def _build_record(rec_id, description, sequence_lines):
         # A FASTA header must contain at least one sequence line.
-        if not sequence_lines:
+    if not sequence_lines:
         raise FastaFormatError(f"Header '{rec_id}' has no sequence")
     organism_match = re.search(
         r"organism=([^=]+?)(?:\s+\w+=|$)",
