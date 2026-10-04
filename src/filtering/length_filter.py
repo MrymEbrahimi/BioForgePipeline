@@ -40,6 +40,23 @@ def Read_to_dict_weight(amino_weights, logg):
                     
      
                 return weight
-    except:# talk to leader
+    except:
+        pass
+        # talk to leader
            #Exception: return
-    
+
+def calleculate_weight(proteins,weight,logg):
+    result:[]
+    #accepted_Weight=[]
+
+    for protein in proteins:
+        sum_weight=0
+
+        for amino in proteins:
+            sum_weight += weight[amino]
+
+        sum_weight += 18.015
+        result.append((protein , sum_weight))
+            #check range of about sum_weight per protein was accepted
+
+        return result
