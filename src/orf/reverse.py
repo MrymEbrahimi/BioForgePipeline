@@ -1,6 +1,8 @@
 import re
+from bioforge.orf.orf import ORF
 
 def find_orfs_reverse(dna: str):
+    orfList = ""
     reverseComplement = convertDnaToReversComplemet(dna)
     start = findStartPos(reverseComplement)
     stop = findStop(reverseComplement) 
@@ -9,10 +11,20 @@ def find_orfs_reverse(dna: str):
             strand = "Reverse",
             frame = findFrames(dna),
             start_pos = len(dna) - start,
-            protein = ["M"],
+            protein = None
             is_complete = False
         )
+        return orfList
     else:
+        orfList
+        orf = ORF(
+            strand = "Reverse",
+            frame = findFrames(dna),
+            start_pos = len(dna) - start,
+            protein = None
+            is_complete = True
+        )
+
         
 def findStartPos(dna: str) -> int:
     for match in re.finditer("ATG",dna):
