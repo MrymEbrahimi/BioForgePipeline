@@ -27,8 +27,7 @@ def translate(RNA):
         amino_acid = codon_table[codon]
         protein += amino_acid
     return protein
-RNA = ""
-print(translate(RNA))
+
 # Filtering
 # Annotation
 # Reporting
