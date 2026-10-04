@@ -1,9 +1,6 @@
 from dataclasses import dataclass
-
 START_CODON = "ATG"
 STOP_CODONS = {"TAA", "TAG", "TGA"}
-
-
 @dataclass
 class ORF:
     strand: str
@@ -11,4 +8,6 @@ class ORF:
     start_pos: int
     protein: str
     is_complete: bool
-    id: int | None = None
+    id: int|None = None
+ 
+
