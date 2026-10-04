@@ -1,26 +1,22 @@
+class DataFileError(Exception):
+    pass
 def load_codon_table(path):
-    """Load the codon table from a data file.
-
-    Args:
-        path: Path to the codon table file.
-
-    Returns:
-        A dictionary mapping codons to amino acids.
-
-    Raises:
-        DataFileError: If the data file contains a malformed line.
-    """
-
-
-def load_amino_weights(path):
-    """Load amino acid weights from a data file.
-
-    Args:
-        path: Path to the amino acid weights file.
-
-    Returns:
-        A dictionary mapping amino acids to their molecular weights.
-
-    Raises:
-        DataFileError: If the data file contains a malformed line.
-    """
+    codon_table = {}
+    with open(path,"r") as file:
+        lines = file.readlines()
+    for line_number,line in enumerate(lines,start=1):
+        parts = line.strip().split()
+        if len(parts) != 3:
+            raise DataFileError(f"Invalid data at line {line_number}")
+        codon_table[parts[0]] = parts[1]
+    return codon_table
+def load_amino_weight(path):
+    amino_weights = {}
+    with open(path,"r") as file:
+        lines = file.readlines()
+    for line_number,line in enumerate(lines,start=1):
+        parts = line.strip().split()
+        if len(parts) != 2:
+            raise DataFileError(f"Invalid data at line {line_number}")
+        amino_weights[parts[0]] = float(parts[1])
+    return amino_weights
