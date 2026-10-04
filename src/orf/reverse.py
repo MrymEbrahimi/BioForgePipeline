@@ -1,15 +1,30 @@
 import re
    
 def find_orfs_reverse(dna: str):
-    reverse = convertDnaToReversComplemet(dna)
-    start_pos = findStartPos(dna)
+    start = findStartPos(dna)
+    for frame in range(3):
+         
+    
 
-def findStartPos(dna: str):
-    for match in re.finditer("ATG",dna):
+def findStartPos(dna: str) -> int:
+    reverseComplementdna = convertDnaToReversComplemet(dna)
+    for match in re.finditer("ATG",reverseComplementdna):
         start_pos = match.start()
         return start_pos
+    
+def findFrames(dna:str):
+    start = findStartPos(dna)
+    return -start
 
-
+def findStop(dna:str):
+    start = findStartPos(dna)
+    reverseComplementdna = convertDnaToReversComplemet(dna)
+    pattern = r"TAA|TAG|TGA"
+    for match in re.finditer(pattern,reverseComplementdna):
+            if match.start() > start:
+                stop_pos = match.start()
+                return stop_pos
+    return None
 
 def convertDnaToReversComplemet(dna: str):
     dna = dna.upper()
@@ -17,7 +32,7 @@ def convertDnaToReversComplemet(dna: str):
     dnaTranslator = str.maketrans("ATCG","TAGC")
     reversComplement = reverse.translate(dnaTranslator)
     return reversComplement
-
+    
     """Find Open Reading Frames on the reverse DNA strand.
 
     The function creates the reverse complement of the DNA sequence,
