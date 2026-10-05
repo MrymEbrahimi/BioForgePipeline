@@ -7,7 +7,7 @@ def find_orfs_reverse(dna: str):
     start = findStartPos(reverseComplement)
     stop = findStop(reverseComplement) 
     if start == -1:
-        return orfList
+        return orfSeq
     
     
     if stop is None:
@@ -29,8 +29,7 @@ def find_orfs_reverse(dna: str):
             protein = "",
             is_complete = True
         )
-        orfList.append(orf)
-    return orfList
+    return orfSeq
         
 def findStartPos(dna: str):
     for match in re.finditer("ATG",dna):

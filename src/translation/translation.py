@@ -1,4 +1,4 @@
-from protein import protein
+from protein import Protein
 
 def translate(codons, codon_table):
     sequence = ""
@@ -9,4 +9,4 @@ def translate(codons, codon_table):
         if amino_acid == "*":
             break
         sequence += amino_acid
-    return protein(sequence)
+    return Protein(sequence)
