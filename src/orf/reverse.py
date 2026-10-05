@@ -36,7 +36,7 @@ def findStartPos(dna: str):
     for match in re.finditer("ATG",dna):
         start_pos = match.start()
         return start_pos
-    return None
+    return -1
     
 def findFrames(dna:str):
     start = findStartPos(dna)
