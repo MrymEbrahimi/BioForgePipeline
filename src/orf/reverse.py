@@ -2,6 +2,7 @@ import re
 from .orf import ORF
 
 def find_orfs_reverse(dna: str):
+    dna = dna.upper()
     orfList = []  
     reverseComplement = convertDnaToReversComplement(dna)
     start = findStartPos(reverseComplement)  
