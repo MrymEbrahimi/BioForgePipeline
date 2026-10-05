@@ -2,3 +2,5 @@
 ATGCTTTCATAG
 >seq002 organism=Human sample=B
 CCCATGGGGTAA
+>seq001 organism=E_coli sample=A
+ATGAAACCCGGGTTTTAA

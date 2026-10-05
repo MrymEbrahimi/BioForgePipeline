@@ -1,35 +1,41 @@
 import re
-from .orf import ORF
+from .orf import ORF, START_CODON, STOP_CODONS
 
 def find_orfs_reverse(dna: str):
-    orfList = ""
+    orfList = []
     reverseComplement = convertDnaToReversComplemet(dna)
     start = findStartPos(reverseComplement)
     stop = findStop(reverseComplement) 
+    if start == -1:
+        return orfList
+    
+    
     if stop is None:
         orf = ORF(
             strand = "Reverse",
-            frame = findFrames(dna),
+            frame = findFrames(reverseComplement),
             start_pos = len(dna) - start,
-            protein = None,
+            protein = reverseComplement[start:],
             is_complete = False
         )
-        return orfList
+        
     else:
-        orfList
+        
         orf = ORF(
             strand = "Reverse",
-            frame = findFrames(dna),
+            frame = findFrames(reverseComplement),
             start_pos = len(dna) - start,
-            protein = None,
+            protein = reverseComplement[start:stop+3],
             is_complete = True
         )
-
+        orfList.append(orf)
+    return orfList
         
 def findStartPos(dna: str) -> int:
     for match in re.finditer("ATG",dna):
         start_pos = match.start()
-        return start_pos
+        return match.start()
+    return -1
     
 def findFrames(dna:str):
     start = findStartPos(dna)
@@ -63,4 +69,3 @@ def convertDnaToReversComplemet(dna: str):
     Returns:
         A collection of ORFs found on the reverse strand.
     """
-
