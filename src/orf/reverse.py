@@ -31,23 +31,31 @@ def find_orfs_reverse(dna: str):
         orfList.append(orf)
     return orfList
         
-def findStartPos(dna: str) -> int:
+def findStartPos(dna: str):
     for match in re.finditer("ATG",dna):
         start_pos = match.start()
+<<<<<<< HEAD
         return match.start()
     return -1
+=======
+        return start_pos
+    return None
+>>>>>>> 8c9897a6d0044ec36755d52b3c324bca64c3f421
     
 def findFrames(dna:str):
     start = findStartPos(dna)
+    if start is None:
+        return 0
     return start % 3
 
-def findStop(dna:str):
+def findStop(dna: str):
     start = findStartPos(dna)
+    if start is None:
+        return None
     pattern = r"TAA|TAG|TGA"
-    for match in re.finditer(pattern,dna):
-            if match.start() > start:
-                stop_pos = match.start()
-                return stop_pos
+    for match in re.finditer(pattern, dna):
+        if match.start() > start:
+            return match.start()
     return None
 
 def convertDnaToReversComplemet(dna: str):
