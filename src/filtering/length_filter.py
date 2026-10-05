@@ -1,4 +1,4 @@
-from exception import DataFileError
+from src.exceptions import DataFileError
 def length_Filter (proteins,min_length,logg ):
     accepted=[]
 
