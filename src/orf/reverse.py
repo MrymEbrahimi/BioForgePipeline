@@ -2,50 +2,51 @@ import re
 from .orf import ORF, START_CODON, STOP_CODONS
 
 def find_orfs_reverse(dna: str):
-    orfList = []
-    reverseComplement = convertDnaToReversComplemet(dna)
-    start = findStartPos(reverseComplement)
-    stop = findStop(reverseComplement) 
-    if start == -1:
-        return orfList
+    orfList = []  
+    reverseComplement = convertDnaToReversComplement(dna)
+    start = findStartPos(reverseComplement)  
+    stop = findStop(reverseComplement)  
     
+    if start == -1:  
+        return orfList
     
     if stop is None:
         orf = ORF(
-            strand = "Reverse",
-            frame = findFrames(reverseComplement),
-            start_pos = len(dna) - start,
-            protein = reverseComplement[start:],
-            is_complete = False
-        )
-        
-    else:
-        
-        orf = ORF(
-            strand = "Reverse",
-            frame = findFrames(reverseComplement),
-            start_pos = len(dna) - start,
-            protein = reverseComplement[start:stop+3],
-            is_complete = True
+            strand="Reverse",
+            frame=findFrames(reverseComplement),  
+            start_pos=len(dna) - start,  
+            protein=reverseComplement[start:],  
+            is_complete=False
         )
         orfList.append(orf)
-    return orfList
-        
-def findStartPos(dna: str):
-    for match in re.finditer("ATG",dna):
-        start_pos = match.start()
-        return start_pos
-    return -1
+    else:
+        orf = ORF(
+            strand="Reverse",
+            frame=findFrames(reverseComplement),
+            start_pos=len(dna) - start,
+            protein=reverseComplement[start:stop+3], 
+            is_complete=True
+        )
+        orfList.append(orf)
     
-def findFrames(dna:str):
+    return orfList  
+
+def findStartPos(dna: str) -> int:
+    for match in re.finditer("ATG", dna):
+        return match.start()
+    return -1
+
+
+def findFrames(dna: str):
     start = findStartPos(dna)
-    if start is None:
+    if start == -1:
         return 0
     return start % 3
 
+
 def findStop(dna: str):
     start = findStartPos(dna)
-    if start is None:
+    if start == -1:
         return None
     pattern = r"TAA|TAG|TGA"
     for match in re.finditer(pattern, dna):
@@ -53,13 +54,13 @@ def findStop(dna: str):
             return match.start()
     return None
 
-def convertDnaToReversComplemet(dna: str):
+
+def convertDnaToReversComplement(dna: str):
     dna = dna.upper()
     reverse = dna[::-1]
-    dnaTranslator = str.maketrans("ATCG","TAGC")
+    dnaTranslator = str.maketrans("ATCG", "TAGC")
     reversComplement = reverse.translate(dnaTranslator)
     return reversComplement
-    
     """Find Open Reading Frames on the reverse DNA strand.
 
     The function creates the reverse complement of the DNA sequence,

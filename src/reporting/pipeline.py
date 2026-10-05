@@ -3,6 +3,7 @@ import sys
 import logging
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
+
 from src.fasta.parser import parse_fasta
 from src.fasta.validator import validate_dna
 from src.orf.forward import find_orfs_forward
@@ -51,14 +52,15 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int):
         return
 
     from src.fasta.dna_ops import DNASequence
-    
+    from src.translation.data_loader import load_codon_table
+    codon_table = load_codon_table("data/codon_table.txt")
     translated_orfs = []
     for orf in all_orfs:
         try:
             dna_obj = DNASequence(orf.protein)
             rna_seq = dna_obj.to_rna()
-            protein_seq = translate(rna_seq)
-            orf.protein = protein_seq 
+            protein_obj = translate(rna_seq, codon_table)
+            orf.protein = protein_obj.sequence
             translated_orfs.append(orf)
         except Exception as e:
             logging.warning(f"Could not translate ORF at {orf.start_pos} ({orf.strand}): {e}")

@@ -1,8 +1,4 @@
 from src.exceptions import DataFileError
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/translation
 def load_codon_table(path):
     codon_table = {}
     with open(path,"r") as file:
