@@ -34,5 +34,5 @@ def load_amino_weight(path):
                 weight = float(weight)
             except ValueError:
                 raise DataFileError(f"Invalid weight at line {line_number}")
-            weights[amino_acid] = weight
+            amino_weights[amino_acid] = weight
     return amino_weights
