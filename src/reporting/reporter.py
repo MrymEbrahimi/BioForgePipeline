@@ -1,5 +1,6 @@
+import os
 def write_report(orfs, path):
-    with open(path, "w", encoding="utf-8") as file:
+    with open(os.path.join(path,"report.txt"), "w", encoding="utf-8") as file:
         for orf in orfs:
             if orf.is_complete:
                 status = "Complete"
