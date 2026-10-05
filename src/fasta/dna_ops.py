@@ -3,13 +3,14 @@ class DNASequence:
         self.sequence = sequence
 
     def complement(self):
-        """Return the complementary DNA sequence."""
-
+        complement_map = str.maketrans("ATCG","TAGC")
+        return self.sequence.translate(complement_map)
     def reverse_complement(self):
-        """Return the reverse complement of the DNA sequence."""
-
+        return self.complement()[::-1]
     def to_rna(self):
-        """Convert the DNA sequence to its RNA form."""
-
+        return self.sequence.replace('T','U')
     def gc_content(self):
-        """Calculate and return the GC content of the DNA sequence."""
+        if len(self.sequence) == 0:
+            return 0.0
+        gc_count = self.sequence.count('G') + self.sequence.count('C')
+        return (gc_count / len(self.sequence)) * 100
