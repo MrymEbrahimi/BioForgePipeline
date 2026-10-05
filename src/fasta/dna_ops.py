@@ -1,7 +1,8 @@
 
 class DNASequence:
-    def __init__(self, sequence):
+    def __init__(self,sequence: str):
         self.sequence = sequence
+
     def complement(self):
         result = ''
         for base in self.sequence:
