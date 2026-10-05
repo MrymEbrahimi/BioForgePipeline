@@ -1,9 +1,6 @@
 class DNASequence:
-    """Represent a DNA sequence and provide common DNA operations.
-
-    Attributes:
-        sequence: DNA sequence to be processed.
-    """
+    def __init__(self,sequence: str):
+        self.sequence = sequence
 
     def complement(self):
         """Return the complementary DNA sequence."""
