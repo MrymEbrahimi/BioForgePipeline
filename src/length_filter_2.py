@@ -7,10 +7,10 @@ class length_filter :
     def caleculate_length(self, orfs, logger=None ):
         accepted=[]
 
-        for n in orfs :
-            if len(n) >= self.min_length :
-                accepted.append(n)
+        for orf in orfs :
+            if len(orf.protein) >= self.min_length :
+                accepted.append(orf)
             else:
-                logger.warning(f"protein '{n}' is short at {n.start_pos} ")
+                logger.warning(f"protein '{n.protein}' is short at {n.start_pos} ")
             
         return accepted
