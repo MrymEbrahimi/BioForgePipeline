@@ -35,8 +35,8 @@ def find_orfs_reverse(dna: str):
 def findStartPos(dna: str) -> int:
     for match in re.finditer("ATG",dna):
         start_pos = match.start()
-        return match.start()
-    return -1
+        return start_pos
+    return None
     
 def findFrames(dna:str):
     start = findStartPos(dna)
