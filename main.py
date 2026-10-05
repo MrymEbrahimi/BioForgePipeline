@@ -1,6 +1,8 @@
 import argparse
 import logging
 import os
+import sys
+from src.reporting.pipeline import run_pipeline
 
 parser = argparse.ArgumentParser( )
 
@@ -28,3 +30,5 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s: %(message)s"
 )
+run_pipeline(args.input, args.out, args.min_length)
+print("--- PIPELINE FINISHED ---")
