@@ -1,5 +1,5 @@
 import re
-from bioforge.orf.orf import ORF
+from .orf import ORF
 
 def find_orfs_reverse(dna: str):
     orfList = ""
@@ -11,7 +11,7 @@ def find_orfs_reverse(dna: str):
             strand = "Reverse",
             frame = findFrames(dna),
             start_pos = len(dna) - start,
-            protein = None
+            protein = None,
             is_complete = False
         )
         return orfList
@@ -21,7 +21,7 @@ def find_orfs_reverse(dna: str):
             strand = "Reverse",
             frame = findFrames(dna),
             start_pos = len(dna) - start,
-            protein = None
+            protein = None,
             is_complete = True
         )
 
