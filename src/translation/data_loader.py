@@ -1,5 +1,5 @@
-class DataFileError(Exception):
-    pass
+from src.exceptions import DataFileError
+
 def load_codon_table(path):
     codon_table = {}
     with open(path,"r") as file:
