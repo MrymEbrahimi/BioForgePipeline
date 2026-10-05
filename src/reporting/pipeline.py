@@ -9,11 +9,12 @@ from src.fasta.validator import validate_dna
 from src.orf.forward import find_orfs_forward
 from src.orf.reverse import find_orfs_reverse
 from src.translation.translation import translate
-from src.filtering.filtering import LengthFilter
+from src.filtering.filtering import LengthFilter, WeightFilter
+from src.translation.data_loader import load_codon_table, load_amino_weight
 from src.reporting.annotator import annotate
 from src.reporting.reporter import write_report
 
-def run_pipeline(input_path: str, output_dir: str, min_length: int):
+def run_pipeline(input_path: str, output_dir: str, min_length: int, min_weight:float = 0.0):
     
     logging.info(f"Starting BioForge Pipeline with input: {input_path}, output: {output_dir}, min_length: {min_length}")
 
@@ -69,7 +70,11 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int):
     
     length_filter_obj = LengthFilter(min_length)
     filtered_orfs = length_filter_obj.calculate_length(translated_orfs, logger=logging)
-    logging.info(f"Filtered ORFs based on min_length {min_length}. Remaining: {len(filtered_orfs)}")
+    if min_weight > 0:
+        amino_weights = load_amino_weight("data/amino_weights.txt")
+        weight_filter_obj = WeightFilter(amino_weights, min_weight)
+        filtered_orfs = weight_filter_obj.calculate_weight(filtered_orfs,  logger = logging)
+    logging.info(f"Filtered ORFs. Remaining: {len(filtered_orfs)}")
     
     annotated_orfs = annotate(filtered_orfs)
     logging.info("Annotated final ORFs.")
@@ -88,4 +93,4 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-    run_pipeline(args.input, args.out, args.min_length)
+    run_pipeline(args.input, args.out, args.min_length, args.min_weight)

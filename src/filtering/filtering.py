@@ -1,5 +1,5 @@
 from src.exceptions import DataFileError
-
+from src.translation.protein import Protein
 
 class LengthFilter :
     def __init__(self , min_length):
@@ -12,41 +12,38 @@ class LengthFilter :
             if len(orf.protein) >= self.min_length :
                 accepted.append(orf)
             else:
-                logger.warning(f"protein '{orf.protein}' is short at {orf.start_pos} ")
+                if logger:
+                    logger.warning(f"protein '{orf.protein}' is short at {orf.start_pos} ")
             
         return accepted
     
+from src.translation.protein import Protein
+
 class WeightFilter:
     def __init__(self, weights, min_weight):
-        self.min_weight=min_weight
-        self.weights=weights
+        self.weights = weights
+        self.min_weight = min_weight
 
-    def calculate_length(self, protein):
-        try:
-            weight = 0
-            for amino in protein:
-                weight += self.weights[amino]
-
-            weight +=18.015
-
-            return weight
-
-        except KeyError as error:
-            raise DataFileError(f"this amino '{error.args[0]}'is not fond")
+    def calculate_weight(self, orfs, logger=None):
         
-    
-    def calculate_weight(self, orfs,logger=None):
-        accepted_weight=[]
-
+        accepted = []
         for orf in orfs:
-            weight=self.caleculate_weight(orf.protein)
-
-            if weight >= self.min_weight:
-                accepted_weight.append(orf)
-            elif logger:
-                logger.warning(f"orf at '{orf.start_pos}',that weight is little ")
-
-        return accepted_weight
+            try:
+               
+                protein_obj = Protein(orf.protein)
+                
+                weight = protein_obj.weight(self.weights)
+                
+                if weight >= self.min_weight:
+                    accepted.append(orf)
+                else:
+                    if logger:
+                        logger.warning(f"protein '{orf.protein}' has weight {weight:.2f} < {self.min_weight}")
+            except Exception as e:
+                if logger:
+                    logger.warning(f"Could not calculate weight for ORF at {orf.start_pos}: {e}")
+                continue
+        return accepted
 
 class Total_orf:
     def __init__(self, min_length, min_weight, weights):

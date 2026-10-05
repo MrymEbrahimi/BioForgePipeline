@@ -22,6 +22,12 @@ parser.add_argument(
     default=0,
     help="Minimum ORF length"
 )
+parser.add_argument(
+    "--min-weight",
+    type=float,
+    default=0.0,
+    help="Minimum molecular weight")
+
 
 args = parser.parse_args()
 
@@ -32,5 +38,5 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s: %(message)s"
 )
-run_pipeline(args.input, args.out, args.min_length)
+run_pipeline(args.input, args.out, args.min_length, args.min_weight)
 print("--- PIPELINE FINISHED ---")
