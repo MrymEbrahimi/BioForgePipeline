@@ -1,18 +1,19 @@
+from exception import DataFileError
 def length_Filter (proteins,min_length,logg ):
     accepted=[]
 
     if not proteins :
-        #logg.warning("any proteins is not in list  ")
-        #this is for when list(proteins)was empty
+        logg.warning("any proteins is not in list  ")
         return accepted
     
     for n in proteins:
-        #n is (Hamoon) proteins[i]
+        #n is (also) proteins[i]
         
         if len(n) >= min_length :
             accepted.append(n)
         else:
             logg.warning(f"protein '{n}' is not in range ")
+            continue
 
     return accepted
 
@@ -31,15 +32,13 @@ def Read_to_dict_weight(amino_weights, logg):
                     parts=line.split( )
 
                     if len(parts) !=2 :
-                        #one error in logging
-                        continue
+                        raise DataFileError(f"parts exist in this , {parts} isn't make from 2 parts")
 
                     amino=parts[0]
                     value=parts[1]
                         #managge of error about value {syntax}
                     weight[amino]=float[value]
                     
-     
                 return weight
     except Exception:
         return {}
