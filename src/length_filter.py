@@ -20,13 +20,14 @@ def Read_to_dict_weight(amino_weights, logg):
     weight={}
 
     try:
-        with open(amino_weights.txt, encoding="urf-8") as f:
-            for line in enumerate(f,start=1):
-                if line<6:
+        with open(amino_weights.txt, encoding="utf-8") as f:
+            for number_line,line in enumerate(f,start=1):
+                if number_line < 6:
                     #the table of weight began in line=6 till end 
                     # & we have look to forward of line=6
                     continue
                 else:
+                    line = line.strip()
                     parts=line.split( )
 
                     if len(parts) !=2 :
@@ -40,23 +41,25 @@ def Read_to_dict_weight(amino_weights, logg):
                     
      
                 return weight
-    except:
-        pass
+    except Exception:
+        return {}
         # talk to leader
-           #Exception: return
 
-def calleculate_weight(proteins,weight,logg):
-    result:[]
-    #accepted_Weight=[]
+def calleculate_weight(proteins,weight,min_weight,logg):
+    result=[]
 
     for protein in proteins:
         sum_weight=0
 
-        for amino in proteins:
+        for amino in protein:
             sum_weight += weight[amino]
 
         sum_weight += 18.015
+
+        if sum_weight < min_weight:
+            continue
+
         result.append((protein , sum_weight))
             #check range of about sum_weight per protein was accepted
 
-        return result
+    return result
