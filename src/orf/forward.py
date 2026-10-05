@@ -1,5 +1,6 @@
 from .orf import ORF, START_CODON, STOP_CODONS
 def find_orfs_forward(dna):
+    dna = dna.upper()
     orfs = []
 
     for frame in range(3):
