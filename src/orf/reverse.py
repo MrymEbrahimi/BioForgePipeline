@@ -10,7 +10,7 @@ def find_orfs_reverse(dna: str):
         orf = ORF(
             strand = "Reverse",
             frame = findFrames(dna),
-            start_pos = len(dna) - start,
+            start_pos = len(dna) - start -1,
             protein = "",
             is_complete = False
         )
@@ -21,7 +21,7 @@ def find_orfs_reverse(dna: str):
         orf = ORF(
             strand = "Reverse",
             frame = findFrames(dna),
-            start_pos = len(dna) - start,
+            start_pos = len(dna) - start -1,
             protein = "",
             is_complete = True
         )
