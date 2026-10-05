@@ -2,7 +2,7 @@ import re
 from .orf import ORF, START_CODON, STOP_CODONS
 
 def find_orfs_reverse(dna: str):
-    orfList = []
+    orfSeq = ""
     reverseComplement = convertDnaToReversComplemet(dna)
     start = findStartPos(reverseComplement)
     stop = findStop(reverseComplement) 
@@ -13,19 +13,20 @@ def find_orfs_reverse(dna: str):
     if stop is None:
         orf = ORF(
             strand = "Reverse",
-            frame = findFrames(reverseComplement),
-            start_pos = len(dna) - start,
-            protein = reverseComplement[start:],
+            frame = findFrames(dna),
+            start_pos = len(dna) - start -1,
+            protein = "",
             is_complete = False
         )
-        
+        orfSeq = reverseComplement[start:]
+        return orfSeq
     else:
-        
+        orfSeq = reverseComplement[start:stop+3]
         orf = ORF(
             strand = "Reverse",
-            frame = findFrames(reverseComplement),
-            start_pos = len(dna) - start,
-            protein = reverseComplement[start:stop+3],
+            frame = findFrames(dna),
+            start_pos = len(dna) - start -1,
+            protein = "",
             is_complete = True
         )
         orfList.append(orf)

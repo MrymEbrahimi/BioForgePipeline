@@ -3,17 +3,29 @@ def length_Filter (proteins,min_length,logg ):
     accepted=[]
 
     if not proteins :
+<<<<<<< HEAD
         logg.warning("any proteins is not in list  ")
         return accepted
     
     for n in proteins:
         #n is (also) proteins[i]
+=======
+        #logg.warning("any proteins is not in list  ")
+        #this is for when list(proteins)was empty
+        return accepted
+    
+    for n in proteins:
+        #n is (Hamoon) proteins[i]
+>>>>>>> feature/filtering
         
         if len(n.protein) >= min_length :
             accepted.append(n)
         else:
             logg.warning(f"protein '{n}' is not in range ")
+<<<<<<< HEAD
             continue
+=======
+>>>>>>> feature/filtering
 
     return accepted
 
@@ -21,9 +33,9 @@ def Read_to_dict_weight(amino_weights, logg):
     weight={}
 
     try:
-        with open(amino_weights.txt, encoding="utf-8") as f:
-            for number_line,line in enumerate(f,start=1):
-                if number_line < 6:
+        with open(amino_weights.txt, encoding="urf-8") as f:
+            for line in enumerate(f,start=1):
+                if line<6:
                     #the table of weight began in line=6 till end 
                     # & we have look to forward of line=6
                     continue
