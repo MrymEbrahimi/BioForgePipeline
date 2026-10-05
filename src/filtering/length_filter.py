@@ -9,7 +9,7 @@ def length_Filter (proteins,min_length,logg ):
     for n in proteins:
         #n is (also) proteins[i]
         
-        if len(n) >= min_length :
+        if len(n.protein) >= min_length :
             accepted.append(n)
         else:
             logg.warning(f"protein '{n}' is not in range ")
