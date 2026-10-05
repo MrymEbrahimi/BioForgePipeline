@@ -29,6 +29,12 @@ parser.add_argument(
     help="Minimum molecular weight")
 
 
+parser.add_argument(
+    "--min-weight",
+    type=float,
+    default=None
+)
+
 args = parser.parse_args()
 
 os.makedirs(args.out, exist_ok=True)

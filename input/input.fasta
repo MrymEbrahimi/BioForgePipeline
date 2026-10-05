@@ -1,2 +1,14 @@
 >seq001 organism=E_coli sample=A
-ATGAAACCCGGGTTTTAA
+ATGCTTTCATAG
+
+>seq002 organism=Human sample=B
+CCCATGGGGTAA
+
+>seq003 organism=Example sample=C
+ATGAAAGCATTTGGGTAG
+
+>seq004 organism=Example sample=D
+ATGAAAGCATTTGGG
+
+>seq005 organism=Example sample=E
+CTACCCAAATGCTTTCAT

@@ -1,7 +1,0 @@
-ID: BFG_001
-Strand: Forward
-Frame: 0
-Start Position: 0
-Protein: MKPGF
-Status: Complete
-
