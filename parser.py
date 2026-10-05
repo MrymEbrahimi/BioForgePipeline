@@ -60,10 +60,4 @@ def parse_fasta(file_path):
 
 
     return records
-records = parse_fasta("input/input.fasta")
 
-for record in records:
-    print(record.sequence)
-    print(record.id)
-    print(record.description)
-    print(record.organism)
