@@ -6,21 +6,33 @@ def find_orfs_reverse(dna: str):
          
     
 
+def find_orfs_reverse(dna: str):
+    reverseComplement = convertDnaToReversComplemet(dna)
+    start = findStartPos(reverseComplement)
+    stop = findStop(reverseComplement) 
+    if stop is None:
+        orf = ORF(
+            strand = "Reverse",
+            frame = findFrames(dna),
+            start_pos = len(dna) - start,
+            protein = ["M"],
+            is_complete = False
+        )
+    else:
+        
 def findStartPos(dna: str) -> int:
-    reverseComplementdna = convertDnaToReversComplemet(dna)
-    for match in re.finditer("ATG",reverseComplementdna):
+    for match in re.finditer("ATG",dna):
         start_pos = match.start()
         return start_pos
     
 def findFrames(dna:str):
     start = findStartPos(dna)
-    return -start
+    return start % 3
 
 def findStop(dna:str):
     start = findStartPos(dna)
-    reverseComplementdna = convertDnaToReversComplemet(dna)
     pattern = r"TAA|TAG|TGA"
-    for match in re.finditer(pattern,reverseComplementdna):
+    for match in re.finditer(pattern,dna):
             if match.start() > start:
                 stop_pos = match.start()
                 return stop_pos
