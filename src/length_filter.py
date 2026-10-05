@@ -8,7 +8,7 @@ def length_Filter (orfs,min_length,logg ):
     
     for n in orfs:
         #n is (also) proteins[i]
-        
+
         if len(n) >= min_length :
             accepted.append(n)
         else:
@@ -39,18 +39,18 @@ def Read_to_dict_weight(amino_weights, logg):
                         #managge of error about value {syntax}
                     weight[amino]=float(value)
                     
-                return weight
+            return weight
     except Exception:
-        return {}
+        raise DataFileError()
         # talk to leader
 
-def calleculate_weight(proteins,weight,min_weight,logg):
+def calleculate_weight(orfs,weight,min_weight,logg):
     result=[]
 
-    for protein in proteins:
+    for orf in orfs:
         sum_weight=0
 
-        for amino in protein:
+        for amino in orf:
             sum_weight += weight[amino]
 
         sum_weight += 18.015
@@ -58,7 +58,7 @@ def calleculate_weight(proteins,weight,min_weight,logg):
         if sum_weight < min_weight:
             continue
 
-        result.append(protein , sum_weight)
+        result.append([orf , sum_weight])
             #check range of about sum_weight per protein was accepted
 
     return result
