@@ -4,32 +4,27 @@ def load_codon_table(path):
     with open(path,"r") as file:
         for line_number,line in enumerate(file,start=1):
             line = line.strip()
-            if not line:
+            if not line or line.startswith("#"):
                 continue
             parts = line.split()
             if len(parts) != 2:
                 raise DataFileError(f"Invalid data at line {line_number}")
             codon, amino_acid = parts
-            if len(codon) != 3:
-                raise DataFileError(f"Invalid data at line {line_number}")
-            if len(amino_acid) != 1:
-                raise DataFileError(f"Invalid data at line {line_number}")
             codon_table[codon] = amino_acid
 
     return codon_table
 def load_amino_weight(path):
     amino_weights = {}
     with open(path,"r") as file:
-        for line_number,line in enumerate(file,start=1):
+        for line_number, line in enumerate(file, start=1):
             line = line.strip()
-            if not line:
+            if not line or line.startswith("#"):
                 continue
             parts = line.split()
             if len(parts) != 2:
                 raise DataFileError(f"Invalid data at line {line_number}")
             amino_acid, weight = parts
-            if len(amino_acid) != 1:
-                raise DataFileError(f"Invalid data at line {line_number}")
+            
             try:
                 weight = float(weight)
             except ValueError:

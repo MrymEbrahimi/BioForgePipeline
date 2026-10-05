@@ -9,7 +9,7 @@ from src.fasta.validator import validate_dna
 from src.orf.forward import find_orfs_forward
 from src.orf.reverse import find_orfs_reverse
 from src.translation.translation import translate
-from src.filtering.filtering import lengthFilter
+from src.filtering.filtering import LengthFilter
 from src.reporting.annotator import annotate
 from src.reporting.reporter import write_report
 
