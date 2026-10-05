@@ -5,7 +5,7 @@ class LengthFilter :
     def __init__(self , min_length):
         self.min_length=min_length
 
-    def caleculate_length(self, orfs, logger=None ):
+    def calculate_length(self, orfs, logger=None ):
         accepted=[]
 
         for orf in orfs :
@@ -21,7 +21,7 @@ class WeightFilter:
         self.min_weight=min_weight
         self.weights=weights
 
-    def caleculate_length(self, protein):
+    def calculate_length(self, protein):
         try:
             weight = 0
             for amino in protein:
@@ -35,7 +35,7 @@ class WeightFilter:
             raise DataFileError(f"this amino '{error.args[0]}'is not fond")
         
     
-    def caleculate_weight(self, orfs,logger=None):
+    def calculate_weight(self, orfs,logger=None):
         accepted_weight=[]
 
         for orf in orfs:

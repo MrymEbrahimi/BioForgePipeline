@@ -67,7 +67,7 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int):
             continue
 
     
-    length_filter_obj = lengthFilter(min_length)
+    length_filter_obj = LengthFilter(min_length)
     filtered_orfs = length_filter_obj.calculate_length(translated_orfs, logger=logging)
     logging.info(f"Filtered ORFs based on min_length {min_length}. Remaining: {len(filtered_orfs)}")
     
