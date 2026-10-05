@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def find_orfs_reverse(dna):
     """Find Open Reading Frames on the reverse DNA strand.
 
@@ -12,8 +11,3 @@ def find_orfs_reverse(dna):
     Returns:
         A collection of ORFs found on the reverse strand.
     """
-=======
-def test():
-    print("Mohammad")
-    
->>>>>>> ee18e9e (Add project module files)
