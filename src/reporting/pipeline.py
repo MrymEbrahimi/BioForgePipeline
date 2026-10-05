@@ -9,7 +9,7 @@ from src.fasta.validator import validate_dna
 from src.orf.forward import find_orfs_forward
 from src.orf.reverse import find_orfs_reverse
 from src.translation.translation import translate
-from src.filtering.length_filter import length_Filter
+from src.filtering.filtering import lengthFilter
 from src.reporting.annotator import annotate
 from src.reporting.reporter import write_report
 
@@ -66,9 +66,11 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int):
             logging.warning(f"Could not translate ORF at {orf.start_pos} ({orf.strand}): {e}")
             continue
 
-    filtered_orfs = length_Filter(translated_orfs, min_length, logging)
+    
+    length_filter_obj = lengthFilter(min_length)
+    filtered_orfs = length_filter_obj.calculate_length(translated_orfs, logger=logging)
     logging.info(f"Filtered ORFs based on min_length {min_length}. Remaining: {len(filtered_orfs)}")
-
+    
     annotated_orfs = annotate(filtered_orfs)
     logging.info("Annotated final ORFs.")
 
