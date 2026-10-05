@@ -21,6 +21,7 @@ parser.add_argument(
     help="Minimum ORF length"
 )
 args = parser.parse_args()
+
 os.makedirs(args.out, exist_ok=True)
 
 logging.basicConfig(
