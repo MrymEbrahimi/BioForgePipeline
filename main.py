@@ -20,6 +20,13 @@ parser.add_argument(
     default=0,
     help="Minimum ORF length"
 )
+parser.add_argument(
+    "--min-weight",
+    type=float,
+    default=0,
+    help="Minimum protein weight"
+)
+
 args = parser.parse_args()
 
 os.makedirs(args.out, exist_ok=True)
