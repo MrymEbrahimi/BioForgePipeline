@@ -1,7 +1,7 @@
 import argparse
 import logging
 import os
-import sys
+
 from src.reporting.pipeline import run_pipeline
 
 parser = argparse.ArgumentParser( )
@@ -21,12 +21,6 @@ parser.add_argument(
     type=int,
     default=0,
     help="Minimum ORF length"
-)
-parser.add_argument(
-    "--min-weight",
-    type=float,
-    default=0,
-    help="Minimum protein weight"
 )
 
 args = parser.parse_args()
