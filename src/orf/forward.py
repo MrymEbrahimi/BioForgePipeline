@@ -1,4 +1,4 @@
-from .orf import START_CODON, STOP_CODONS
+from .orf import ORF, START_CODON, STOP_CODONS
 def find_orfs_forward(dna):
     orfs = []
 
