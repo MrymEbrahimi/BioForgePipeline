@@ -1,12 +1,12 @@
-from exception import DataFileError
-def length_Filter (proteins,min_length,logg ):
+from src.exception import DataFileError
+def length_Filter (orfs,min_length,logg ):
     accepted=[]
 
-    if not proteins :
+    if not orfs :
         logg.warning("any proteins is not in list  ")
         return accepted
     
-    for n in proteins:
+    for n in orfs:
         #n is (also) proteins[i]
         
         if len(n) >= min_length :
@@ -21,7 +21,7 @@ def Read_to_dict_weight(amino_weights, logg):
     weight={}
 
     try:
-        with open(amino_weights.txt, encoding="utf-8") as f:
+        with open(amino_weights , encoding="utf-8") as f:
             for number_line,line in enumerate(f,start=1):
                 if number_line < 6:
                     #the table of weight began in line=6 till end 
@@ -37,7 +37,7 @@ def Read_to_dict_weight(amino_weights, logg):
                     amino=parts[0]
                     value=parts[1]
                         #managge of error about value {syntax}
-                    weight[amino]=float[value]
+                    weight[amino]=float(value)
                     
                 return weight
     except Exception:
@@ -58,7 +58,7 @@ def calleculate_weight(proteins,weight,min_weight,logg):
         if sum_weight < min_weight:
             continue
 
-        result.append((protein , sum_weight))
+        result.append(protein , sum_weight)
             #check range of about sum_weight per protein was accepted
 
     return result
