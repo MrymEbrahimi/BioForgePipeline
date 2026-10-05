@@ -37,9 +37,15 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int):
         dna_seq = record.sequence
 
         forward_orfs = find_orfs_forward(dna_seq)
+        for orf in forward_orfs:
+            orf.sequence_id = record.id
+
         logging.info(f"Found {len(forward_orfs)} Forward ORFs for {record.id}.")
         
         reverse_orfs = find_orfs_reverse(dna_seq)
+        for orf in reverse_orfs:
+            orf.sequence_id = record.id
+
         logging.info(f"Found {len(reverse_orfs)} Reverse ORFs for {record.id}.")
 
         all_orfs.extend(forward_orfs)
