@@ -4,35 +4,14 @@ class DNASequence:
         self.sequence = sequence
 
     def complement(self):
-        result = ''
-        for base in self.sequence:
-            if base == 'A':
-                result += "T"
-            elif base == "T":
-                result += "A"
-            elif base == "C":
-                result += "G"
-            elif base == "G":
-                result += "C"
-        return result
+        complement_map = str.maketrans("ATCG","TAGC")
+        return self.sequence.translate(complement_map)
     def reverse_complement(self):
-        complement = self.complement()
-        result = ""
-
-        for base in reversed(complement):
-            result += base
-
-        return result
+        return self.complement()[::-1]
     def to_rna(self):
-        result=''
-        for base in self.sequence:
-            if base=='T':
-                result +="U"
-            else:
-                result +=base
-        return result
-
+        return self.sequence.replace('T','U')
     def gc_content(self):
-        gc = self.sequence.count('C') + self.sequence.count('G')
-        result = (gc/ len(self.sequence)) * 100
-        return result
+        if len(self.sequence) == 0:
+            return 0.0
+        gc_count = self.sequence.count('G') + self.sequence.count('C')
+        return (gc_count / len(self.sequence)) * 100
