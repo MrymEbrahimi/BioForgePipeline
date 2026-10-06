@@ -1,0 +1,16 @@
+ID: BFG_001
+Strand: Forward
+Frame: 0
+Start Position: 0
+Protein: MKAFG
+Sequence ID: seq003
+Status: Complete
+
+ID: BFG_002
+Strand: Forward
+Frame: 0
+Start Position: 0
+Protein: MKAFG
+Sequence ID: seq004
+Status: Incomplete
+

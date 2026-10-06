@@ -36,8 +36,9 @@ def run_pipeline(input_path: str, output_dir: str, min_length: int, min_weight:f
             logging.warning(f"Skipping record {record.id} due to invalid sequence: {e}")
             continue 
         dna_seq = record.sequence
+        source_id = record.id
 
-        forward_orfs = find_orfs_forward(dna_seq)
+        forward_orfs = find_orfs_forward(dna_seq , source_id)
         for orf in forward_orfs:
             orf.sequence_id = record.id
 

@@ -1,5 +1,5 @@
 from .orf import ORF, START_CODON, STOP_CODONS
-def find_orfs_forward(dna):
+def find_orfs_forward(dna , source_id):
     dna = dna.upper()
     orfs = []
 
@@ -32,7 +32,8 @@ def find_orfs_forward(dna):
                     frame=frame,
                     start_pos=start_pos,
                     protein=orf_sequence,
-                    is_complete=is_complete
+                    is_complete=is_complete,
+                    source_id=source_id
                 )
 
                 orfs.append(orf)

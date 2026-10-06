@@ -9,6 +9,6 @@ class ORF:
     protein: str
     is_complete: bool
     id: int|None = None
-    sequence_id: str = ""
+    source_id: str = ""
  
 

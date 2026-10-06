@@ -8,6 +8,7 @@ def write_report(orfs, path):
                 status = "Incomplete"
             
             file.write(
+                f"Sequence ID: {orf.source_id}\n"
                 f"ID: {orf.id}\n"
                 f"Strand: {orf.strand}\n"
                 f"Frame: {orf.frame}\n"
