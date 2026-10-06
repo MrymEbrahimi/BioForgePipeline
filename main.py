@@ -22,11 +22,6 @@ parser.add_argument(
     default=0,
     help="Minimum ORF length"
 )
-parser.add_argument(
-    "--min-weight",
-    type=float,
-    default=0.0,
-    help="Minimum molecular weight")
 
 
 parser.add_argument(
