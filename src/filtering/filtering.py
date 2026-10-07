@@ -17,7 +17,6 @@ class LengthFilter :
             
         return accepted
     
-from src.translation.protein import Protein
 
 class WeightFilter:
     def __init__(self, weights, min_weight):
